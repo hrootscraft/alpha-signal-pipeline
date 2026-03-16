@@ -1,4 +1,4 @@
-# Earnings Call Sentiment -> Alpha Signal Pipeline
+# Earnings Call Sentiment --> Alpha Signal Pipeline
 
 **NLP pipeline that pulls real SEC 10-Q filings, extracts sentiment signals with FinBERT, and discovers a contrarian alpha signal — all tested with ML cross-validation and walk-forward backtesting.**
 
@@ -63,7 +63,7 @@ Tests whether sentiment features predict forward returns using three standard me
 
 ### 7. ML Models with Cross-Validation
 Trains **Random Forest** and **Gradient Boosting** regressors with:
-- **`TimeSeriesSplit`** (3 folds): Train on past, predict on future — no temporal data leakage
+- **`TimeSeriesSplit`** (3 folds): Train on past, predict on future - no temporal data leakage
 - **`GridSearchCV`**: Systematic hyperparameter search (tree depth, min samples, n_estimators)
 - **Walk-forward model comparison**: Out-of-sample IC for OLS vs. RF vs. GB
 
@@ -81,7 +81,7 @@ Measures per-quarter returns, hit rate, and annualized Sharpe ratio.
 
 ## Key Finding: It's a Contrarian Signal
 
-The most important (and surprising) result: **positive filing sentiment predicts *lower* short-term returns.** Overly positive management tone is a sell signal — the market has already priced in the good news, and rosy language may indicate overconfidence. This is consistent with academic research (Loughran & McDonald, 2011).
+The most important (and surprising) result: **positive filing sentiment predicts *lower* short-term returns.** Overly positive management tone is a sell signal - the market has already priced in the good news, and rosy language may indicate overconfidence. This is consistent with academic research (Loughran & McDonald, 2011).
 
 **Why this makes sense:**
 1. By the time a 10-Q is filed (40 days after quarter-end), the information is largely priced in
@@ -146,9 +146,9 @@ jupyter notebook earnings_sentiment_alpha.ipynb
 
 - **No lookahead bias**: Forward returns are measured starting the *next trading day* after the filing date. Signals use only publicly available information.
 - **Market-adjusted returns**: Stock returns are adjusted by subtracting SPY returns over the same window, isolating stock-specific alpha from market beta.
-- **TimeSeriesSplit cross-validation**: ML models are trained on past data and evaluated on future data — prevents temporal data leakage that random KFold would cause.
+- **TimeSeriesSplit cross-validation**: ML models are trained on past data and evaluated on future data - prevents temporal data leakage that random KFold would cause.
 - **Cross-sectional analysis**: Tests whether *relative* sentiment (stock A vs. stock B) predicts *relative* returns, the standard approach in quantitative equity research.
-- **Walk-forward validation**: IC is measured within each earnings season, not just in aggregate — the gold standard for financial signal research.
+- **Walk-forward validation**: IC is measured within each earnings season, not just in aggregate - the gold standard for financial signal research.
 - **FinBERT over GPT-4/LLMs**: Deterministic (no temperature sampling), fast (~1,350 sentences/min on CPU), free (no API costs), and domain-tuned for financial language.
 - **10-Q over earnings transcripts**: Free, standardized, and legally mandated. Transcripts require paid APIs (e.g., S&P Capital IQ).
 
