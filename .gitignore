@@ -1,0 +1,16 @@
+# Data
+data/
+*.csv
+
+# Images (generated at runtime)
+*.png
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Environment
+.env
+venv/
+.venv/
